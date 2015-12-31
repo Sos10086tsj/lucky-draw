@@ -1,7 +1,50 @@
+var index = {
+    showPrizeInfo : function(name, amount, prize, price){
+        $("#js_prize_name").html(name);
+        $("#js_prize_prize").html(prize);
+        $("#js_prize_price").html(price);
+
+        //清空获奖人列表，如果已经抽奖过，显示已经获奖的用户信息
+        $("#js_prize_winner").find("li").remove();
+        for(var i in users.prizeWinnerResult){
+            var winnerResult = users.prizeWinnerResult[i];
+            if(winnerResult.prize == name){
+                var li = document.createElement('li');
+                var text = document.createTextNode(winnerResult.winnerName);
+                li.appendChild(text);
+                $("#js_prize_winner")[0].appendChild(li);
+            }
+        }
+    },
+
+    handleWinner : function(){
+        var imgSrc = $('#gallery li.focus a img').attr("src");
+        var index = imgSrc.substring(6,imgSrc.length - 4);
+        index = parseInt(index);
+        //1. 保存到获奖人列表
+        var winner = users.userList[index];
+        users.prizeWinnerList.push(index);
+
+        //2. 保存获奖结果
+        var prizeName = $("#js_prize_name").html();
+        var winnerResult = {
+            prize : prizeName,
+            winnerName : winner.name
+        }
+        users.prizeWinnerResult.push(winnerResult);
+
+        //展示获奖人列表
+        var li = document.createElement('li');
+        var text = document.createTextNode(winner.name);
+        li.appendChild(text);
+        $("#js_prize_winner")[0].appendChild(li);
+
+    }
+}
 !(function(){
     'use strict';
 
-    var file_num = 43;
+    var file_num = 16;
     var photo_row = 5;
     var photo_col = 5;
     var photo_num = photo_row * photo_col;
@@ -93,13 +136,7 @@
         }else{
         	
         	//保存获奖用户
-            var imgSrc = $('#gallery li.focus a img').attr("src");
-            var index = imgSrc.substring(6,imgSrc.length - 4);
-            
-            var winner = users.userList[index];
-            users.prizeWinnerList.push(parseInt(index));
-            
-            console.info(users.prizeWinnerList);
+            index.handleWinner();
             
             $(this).data('action','start').html('Go');
             $('#gallery li.focus').addClass('hover');
@@ -128,5 +165,31 @@
     		return false;
     	}
     	return true;
-    }
+    };
+
+    //初始化菜单列表
+    var initMenu = function(){
+        var menu = $("#js_prizes_menu");
+        for(var i in prizes.prizeSettings){
+            var prize = prizes.prizeSettings[i];
+            var link = document.createElement('a');
+            var li = document.createElement('li');
+            var text = document.createTextNode(prize.name);
+
+            link.href = '#';
+            link.setAttribute("onclick", "index.showPrizeInfo('"
+                + prize.name + "','"
+                + prize.amount + "','"
+                + prize.prize + "','"
+                + prize.price
+                + "');return false;");
+            link.appendChild(text);
+
+            li.appendChild(link);
+
+            menu[0].appendChild(li);
+        }
+    };
+
+    initMenu();
 })();
