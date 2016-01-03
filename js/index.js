@@ -1,4 +1,23 @@
 var index = {
+    menuSelect : function(){
+        var prizeName = $("#js_prizes_menu").val();
+
+        //清空获奖人列表，如果已经抽奖过，显示已经获奖的用户信息
+        //$("#js_prize_winner").find("li").remove();
+        $("#js_prize_winner").html("");
+        var html = '';
+        for(var i in users.prizeWinnerResult){
+            var winnerResult = users.prizeWinnerResult[i];
+            if(winnerResult.prize == prizeName){
+                html += winnerResult.winnerName;
+                if(i < users.prizeWinnerResult.length - 1){
+                    html += "、";
+                }
+            }
+        }
+        $("#js_prize_winner").html(html);
+    },
+
     showPrizeInfo : function(name, amount, prize, price){
         $("#js_prize_name").html(name);
         $("#js_prize_prize").html(prize);
@@ -26,19 +45,25 @@ var index = {
         users.prizeWinnerList.push(index);
 
         //2. 保存获奖结果
-        var prizeName = $("#js_prize_name").html();
+        var prizeName = $("#js_prizes_menu").val();
         var winnerResult = {
             prize : prizeName,
             winnerName : winner.name
         }
         users.prizeWinnerResult.push(winnerResult);
 
-        //展示获奖人列表
-        var li = document.createElement('li');
-        var text = document.createTextNode(winner.name);
-        li.appendChild(text);
-        $("#js_prize_winner")[0].appendChild(li);
 
+        //展示获奖人列表
+        //var li = document.createElement('li');
+        //var text = document.createTextNode(winner.name);
+        //li.appendChild(text);
+        //$("#js_prize_winner")[0].appendChild(li);
+        var html = $("#js_prize_winner").html();
+        if(html && html.length > 0){
+            html += "、";
+        }
+        html += winner.name;
+        $("#js_prize_winner").html(html);
     }
 }
 !(function(){
@@ -191,5 +216,19 @@ var index = {
         }
     };
 
-    initMenu();
+    var initSelectMenu = function(){
+        var select = $("#js_prizes_menu");
+        for(var i in prizes.prizeSettings){
+            var prize = prizes.prizeSettings[i];
+            var option = '<option value='
+            + prize.name
+            + '>'
+            + prize.name
+            + '</option>';
+            select.append(option);
+        }
+    };
+
+   // initMenu();
+    initSelectMenu();
 })();

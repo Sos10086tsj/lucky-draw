@@ -9,19 +9,17 @@
 </head>
 <body>
     <!-- 菜单区 -->
-    <div>
-        <ul id="js_prizes_menu"></ul>
+    <div style="text-align:center; margin:10px auto">
+        <select id="js_prizes_menu" onchange="index.menuSelect()" style="font-size:36px">
+        </select>
     </div>
 
     <!-- 当前抽奖项和获奖名单 -->
-    <div>
+    <div style="text-align:center; margin:auto">
+        <div><label style="font-size:24px;color:red">获奖名单</label></div>
         <div>
-            <label id="js_prize_name"></label>
-            <label id="js_prize_prize"></label>
-            <label id="js_prize_price"></label>
-        </div>
-        <div>
-            <ul id="js_prize_winner"></ul>
+            <!--<ul id="js_prize_winner"></ul>-->
+            <label id="js_prize_winner"></label>
         </div>
     </div>
 
