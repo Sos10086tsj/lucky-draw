@@ -157,7 +157,7 @@ var index = {
             },100);
             timer_small = setInterval(function(){
             	$('#gallery li:eq('+Math.ceil(Math.random()*photo_num)+') img').attr('src','photo/'+Math.ceil(Math.random()*file_num)+'.jpg');
-            },100);
+            },1);
         }else{
         	
         	//保存获奖用户
