@@ -26,7 +26,7 @@ body {
     perspective: 100px;
     -webkit-perspective: 100px;
     padding: 1px;
-    float: right;
+    float: left;
     position: relative;
     transition: .1s;
     -webkit-transition: 0.1s;
@@ -61,8 +61,8 @@ body {
 
 #gallery li.loaded.hover, #gallery li.loaded:hover {
     z-index: 2;
-    transform: scale(1.5);
-    -webkit-transform: scale(1.5);
+    transform: scale(3);
+    -webkit-transform: scale(3);
 }
 
 #gallery li.loaded.hover a, #gallery li.loaded a:hover {

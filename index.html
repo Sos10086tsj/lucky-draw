@@ -3,35 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>LuckyOne</title>
+    <link rel="icon" type="image/gif" href="images/hust.ico">
     <link rel='stylesheet' href='css/animate.css'>
     <link rel='stylesheet' href='css/buttons.css'>
     <link rel='stylesheet' href='css/style.css'>
+    <link rel='stylesheet' href='css/common.css'>
 </head>
-<body>
-    <!-- 菜单区 -->
-    <div style="text-align:center; margin:10px auto">
-        <select id="js_prizes_menu" onchange="index.menuSelect()" style="font-size:36px">
-        </select>
+<body class="hust_bg">
+
+<div class="hust_main">
+    
+    <div>
+        <img src="images/2017_chicken.png" width="60px;">
+    </div>
+    
+    <!--标题-->
+    <div class="hust_title">
+        <div class="title" id="js_title"><img src="images/title.png" ></div>
+        <div class="subhead" id="js_subhead">暨<img src="images/2017_chicken.png" width="60px;" style="vertical-align:middle;padding-bottom: 10px;">年迎春酒会</div>
     </div>
 
-    <!-- 当前抽奖项和获奖名单 -->
-    <div style="text-align:center; margin:auto">
-        <div><label style="font-size:24px;color:red">获奖名单</label></div>
+
+    <div class="hust_gallery"><ul id='gallery'></ul></div>
+    <div class="cf"></div>
+    <div class="draw">
+        <button id="action" class="button button-3d button-action button-pill button-jumbo" data-action="start">Go</button>
+    </div>
+
+    <!-- 菜单区 -->
+    <div class="hust_prize">
         <div>
-            <!--<ul id="js_prize_winner"></ul>-->
-            <label id="js_prize_winner"></label>
+            <select class="prize_select" id="js_prizes_menu" onchange="lucky.prizeChange()">
+            </select><label class="prize_label" style="margin-left: 10px;">获奖名单</label>
+        </div>
+        <div>
+            <div id="js_prize_display" style="width: 250px;"></div>
         </div>
     </div>
 
-    <ul id='gallery'></ul>
-    <div style="clear:both;"></div>
-    <div style="text-align:center; padding-top:30px;">
-        <button style="font-size:40px; width:200px;" id="action" class="button button-3d button-action button-pill button-jumbo" data-action="start">Go</button>
-    </div>
-    <script src='js/jquery.js'></script>
-    <script src='js/users.js'></script>
-    <script src='js/prizes.js'></script>
-    <script src='js/buttons.js'></script>
-    <script src="js/index.js"></script>
+</div>
+
 </body>
+<script src='js/jquery.js'></script>
+<script src="data/data.js"></script>
+<script src="data/photo.js"></script>
+<script src='js/buttons.js'></script>
+<!--<script src="js/index.js"></script>-->
+<script src="js/lucky.js"></script>
 </html>

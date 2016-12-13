@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+.hust_bg{
+    background:url(../images/bg_1.jpg) no-repeat;
+    background-size:100% 100%;
+}
+
+.hust_main{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.hust_title{
+    text-align: center;
+    color: red;
+}
+.hust_title .title{
+    width: 800px;
+    margin: 50px 0 0 70px;
+    font-size: 34px;
+}
+.hust_title .subhead{
+    width: 230px;
+    margin-left: 390px;
+    font-size: 26px;
+}
+
+.hust_prize {
+    font-size: 20px;
+    margin: -480px 0 0 850px;
+    float: left;
+    text-align: left;
+}
+
+.hust_gallery{
+    width: 540px;
+    margin-left: 220px;
+    text-align: center;
+}
+
+.cf{
+    clear:both;
+}
+.draw{
+    margin-left: 420px;
+    text-align: center;
+    width:200px;
+    font-size:40px;
+}
+.draw button{
+    margin-top: 20px;
+}
+
+.prize_label{
+    margin-top: 10px;
+    font-size: 18px;
+    /*color: red;*/
+    color:#030303;
+}
+
+.hust_prize select{
+    font-size: 24px;
+    /*color: #ff0618;*/
+    display: inline-block;
+    color: red;
+}
