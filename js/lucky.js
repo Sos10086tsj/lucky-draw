@@ -34,7 +34,7 @@ var lucky = {
         if(winners != undefined && winners.length > 0){
             for(var i in winners){
                 var winner = winners[i];
-                names += winner.photo + '@' + winner.phone + '@@';
+                names += winner.name + '@' +  winner.photo + '@' + winner.phone + '@@';
             }
         }
         $('#js_prize_display').html(lucky.formatWinnerDisplay(names));
@@ -48,13 +48,15 @@ var lucky = {
         for(var i in nameList){
             if(undefined != nameList[i] && nameList[i].length > 0){
                 var namePhone = nameList[i].split('@');
-                html += '<div style="text-align:center;font-size: 16px;width: 125px;float: left;margin-top: 10px;"><img style="vertical-align: middle;" width="30px;"  src="photo/'
-                    + namePhone[0]
-                    + '"></src>';
-                var phone = namePhone[1];
+                html += '<div style="text-align: center;font-size: 16px;width: 130px;float: left;margin-top: 10px;float: left;"><div style="float: left;"><img width="40px;" height="40px;" style="vertical-align: middle;" src="photo/'
+                    + namePhone[1]
+                    + '"></div>';
+                var phone = namePhone[2];
+                html += '<div style="float: left;">' + namePhone[0] + '</div>';
                 if(undefined != phone && null != phone && phone.length != 0){
-                    html += '<span>' + lucky.displayPhone(phone) + '</span></div>';
+                    html +=  '<div style="float: left;">' + lucky.displayPhone(phone) + '</div>';
                 }
+                html +=  '</div>';
             }
         }
         return html;
@@ -138,7 +140,7 @@ $(function(){
     lucky.init();
 
     var file_num = data.photos.length;
-    var photo_row = 8;
+    var photo_row = 5;
     var photo_col = 8;
     var photo_num = photo_row * photo_col;
     var gallery = $('#gallery');
@@ -171,13 +173,13 @@ $(function(){
 
     var timer_big, timer_small;
     var timer_small_slow = setInterval(function(){
-        $('#gallery li:eq('+Math.ceil(Math.random()*photo_num)+')')
+        $('#gallery li:eq('+ lucky.randomNumBoth(0,photo_num -1) +')')
             .addClass('animated bounce')
             .one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
                 $(this)
                     .removeClass('animated bounce')
                     .find('img')
-                    .attr('src','photo/'+Math.ceil(Math.random()*file_num)+'.jpg')
+                    .attr('src',lucky.getRandomPhoto())
 
             });
     },100);
