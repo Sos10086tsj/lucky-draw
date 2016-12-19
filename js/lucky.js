@@ -153,7 +153,7 @@ $(function(){
         var img = document.createElement('img');
         var link = document.createElement('a');
         var li = document.createElement('li');
-        li.setAttribute("style","width:60px;")
+        li.setAttribute("style","width:60px;height:60px;")
 
         link.href = 'javascript:;';
         link.appendChild(img);
